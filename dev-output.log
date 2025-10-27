@@ -1,0 +1,28 @@
+
+> nextjs_tailwind_shadcn_ts@0.1.0 dev
+> nodemon --exec "npx tsx server.ts" --watch server.ts --watch src --ext ts,tsx,js,jsx 2>&1 | tee dev.log
+
+[33m[nodemon] 3.1.10[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): server.ts src/**/*[39m
+[33m[nodemon] watching extensions: ts,tsx,js,jsx[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling / ...
+ ✓ Compiled / in 6.3s (843 modules)
+ GET / 200 in 6995ms
+ ○ Compiling /api/school ...
+ ✓ Compiled /api/school in 1439ms (910 modules)
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`Letter`.`id` FROM `main`.`Letter` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`DocumentArchive`.`id` FROM `main`.`DocumentArchive` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+ GET /api/school 200 in 1630ms
+ GET /api/complaints 200 in 1769ms
+prisma:query SELECT `main`.`School`.`id`, `main`.`School`.`name`, `main`.`School`.`description`, `main`.`School`.`address`, `main`.`School`.`phone`, `main`.`School`.`email`, `main`.`School`.`website`, `main`.`School`.`logo`, `main`.`School`.`principal`, `main`.`School`.`motto`, `main`.`School`.`vision`, `main`.`School`.`mission`, `main`.`School`.`createdAt`, `main`.`School`.`updatedAt` FROM `main`.`School` WHERE 1=1 ORDER BY `main`.`School`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Complaint`.`id`, `main`.`Complaint`.`uuid`, `main`.`Complaint`.`ticketNo`, `main`.`Complaint`.`name`, `main`.`Complaint`.`email`, `main`.`Complaint`.`phone`, `main`.`Complaint`.`category`, `main`.`Complaint`.`subject`, `main`.`Complaint`.`description`, `main`.`Complaint`.`status`, `main`.`Complaint`.`priority`, `main`.`Complaint`.`adminNotes`, `main`.`Complaint`.`createdAt`, `main`.`Complaint`.`updatedAt` FROM `main`.`Complaint` WHERE 1=1 ORDER BY `main`.`Complaint`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(*) AS `_count$_all` FROM (SELECT `main`.`Complaint`.`id` FROM `main`.`Complaint` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`Letter`.`id`, `main`.`Letter`.`uuid`, `main`.`Letter`.`letterNo`, `main`.`Letter`.`type`, `main`.`Letter`.`category`, `main`.`Letter`.`subject`, `main`.`Letter`.`description`, `main`.`Letter`.`sender`, `main`.`Letter`.`recipient`, `main`.`Letter`.`date`, `main`.`Letter`.`status`, `main`.`Letter`.`priority`, `main`.`Letter`.`adminNotes`, `main`.`Letter`.`evidenceImages`, `main`.`Letter`.`createdAt`, `main`.`Letter`.`updatedAt` FROM `main`.`Letter` WHERE 1=1 ORDER BY `main`.`Letter`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`DocumentArchive`.`id`, `main`.`DocumentArchive`.`uuid`, `main`.`DocumentArchive`.`docNumber`, `main`.`DocumentArchive`.`title`, `main`.`DocumentArchive`.`category`, `main`.`DocumentArchive`.`description`, `main`.`DocumentArchive`.`fileUrl`, `main`.`DocumentArchive`.`fileName`, `main`.`DocumentArchive`.`fileSize`, `main`.`DocumentArchive`.`fileType`, `main`.`DocumentArchive`.`issuedDate`, `main`.`DocumentArchive`.`issuedBy`, `main`.`DocumentArchive`.`status`, `main`.`DocumentArchive`.`tags`, `main`.`DocumentArchive`.`adminNotes`, `main`.`DocumentArchive`.`createdAt`, `main`.`DocumentArchive`.`updatedAt` FROM `main`.`DocumentArchive` WHERE 1=1 ORDER BY `main`.`DocumentArchive`.`createdAt` DESC LIMIT ? OFFSET ?
+ GET /api/letters 200 in 1768ms
+ GET /api/documents 200 in 1639ms
+ GET / 200 in 415ms

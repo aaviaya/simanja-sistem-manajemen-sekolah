@@ -1,0 +1,118 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  role      String   @default("user") // user, admin
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model School {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  address     String?
+  phone       String?
+  email       String?
+  website     String?
+  logo        String?
+  principal   String?
+  motto       String?
+  vision      String?
+  mission     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Complaint {
+  id          String   @id @default(uuid())
+  uuid        String   @unique @default(uuid())
+  ticketNo    String   @unique // Format: REQ-YYYYMM-00000
+  name        String
+  email       String
+  phone       String?
+  category    String   // academic, facility, service, other
+  subject     String
+  description String
+  status      String   @default("pending") // pending, in_progress, resolved, rejected
+  priority    String   @default("medium") // low, medium, high
+  adminNotes  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Letter {
+  id          String   @id @default(uuid())
+  uuid        String   @unique @default(uuid())
+  letterNo    String   @unique // Format: LET-YYYYMM-00000
+  type        String   // masuk, keluar
+  category    String   // Surat Informasi IT, Surat Pengajuan Barang, etc.
+  subject     String
+  description String?
+  sender      String?  // Pengirim (untuk surat masuk)
+  recipient   String?  // Penerima (untuk surat keluar)
+  date        String   // Tanggal surat
+  status      String   @default("pending") // pending, approved, rejected, processed
+  priority    String   @default("medium") // low, medium, high
+  adminNotes  String?
+  evidenceImages String? // JSON array of image URLs
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model DocumentArchive {
+  id          String   @id @default(uuid())
+  uuid        String   @unique @default(uuid())
+  docNumber   String   @unique // Format: DOC-YYYYMM-00000
+  title       String
+  category    String   // Surat Keputusan (SK), Notulen Rapat, Laporan Kegiatan, Legalitas & Perizinan, Arsip Umum, Kepeagawaian, Kesiswaan
+  description String?
+  fileUrl     String?  // URL ke file dokumen
+  fileName    String?  // Nama asli file
+  fileSize    Int?     // Ukuran file dalam bytes
+  fileType    String?  // Tipe file (pdf, doc, docx, etc.)
+  issuedDate  String?  // Tanggal diterbitkan
+  issuedBy    String?  // Pihak yang menerbitkan
+  status      String   @default("active") // active, archived, deleted
+  tags        String?  // JSON array of tags
+  adminNotes  String?  // Catatan admin
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SystemSettings {
+  id                  String   @id @default(uuid())
+  whatsappEnabled     Boolean  @default(false)
+  whatsappApiToken    String?
+  whatsappSender      String?
+  autoBackupEnabled   Boolean  @default(false)
+  backupSchedule      String   @default("daily") // daily, weekly, monthly
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model BackupRecord {
+  id          String   @id @default(uuid())
+  filename    String   @unique
+  filePath    String
+  fileSize    Int
+  backupType  String   // manual, auto
+  status      String   @default("completed") // completed, failed, in_progress
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
